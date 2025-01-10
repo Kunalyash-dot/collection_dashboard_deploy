@@ -3,7 +3,7 @@ import axios from "axios";
 
 // Set up Axios instance with the backend base URL
 const API = axios.create({
-  baseURL: "http://localhost:8000", // Backend server's URL
+  baseURL: "https://collection-dashboard.onrender.com", // Backend server's URL
 });
 // for mobile
 // const API = axios.create({
