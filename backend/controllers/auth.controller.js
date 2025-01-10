@@ -4,16 +4,17 @@ import jwt from 'jsonwebtoken'
 import { errorHandler } from "../utils/error.js";
 
     export const signin =async (req,res,next)=>{
-        const {mobile,password} = req.body;
+        const {mobile} = req.body;
         // console.log(process.env.JWT_SECRET)
         try {
+            console.log(mobile)
             const validUser = await User.findOne({mobile});
             // console.log(validUser);
             if(!validUser) return next(errorHandler(404,"User not found!"));
             // const validPassword =await bcrypt.compare(password,validUser.password);
-            const validPassword = password === validUser.password;
+            // const validPassword = password === validUser.password;
             // console.log(validPassword)
-            if(!validPassword) return next(errorHandler(401,"Wrong Credentials!"));
+            // if(!validPassword) return next(errorHandler(401,"Wrong Credentials!"));
              // Generate access token (short-lived)
         const accessToken = jwt.sign(
             { id: validUser._id, role: validUser.role },

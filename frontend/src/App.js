@@ -15,6 +15,7 @@ import DataTable from './pages/DataTable';
 import EmployeeDataTable from './pages/EmployeeDataTable';
 import AccessDenied from './pages/AccessDenied';
 import EmployeeChart from './pages/employees/EmployeeChart';
+import AutoLogin from './pages/AutoLogin';
 
 
 
@@ -24,7 +25,7 @@ function App() {
    <BrowserRouter>
       <Routes>
         {/* Public Routes */}
-        <Route path='/login' element={<LoginPage />} />
+        <Route path='/login/:mobile' element={<AutoLogin />} />
 
          {/* Role-Based Protected Routes */}
          {/* Admin Dashboard */}

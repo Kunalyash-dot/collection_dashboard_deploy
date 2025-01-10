@@ -24,15 +24,33 @@ connectDB();
 const __dirname = path.resolve();
 
 // Allow requests from the frontend (http://localhost:3000 by default for React)
-app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000', // Use the deployed frontend URL
-  credentials: true, // Allow credentials (cookies, auth headers)
-}));
+// app.use(cors({
+//   origin: process.env.CLIENT_URL || 'http://localhost:3000', // Use the deployed frontend URL
+//   credentials: true, // Allow credentials (cookies, auth headers)
+// }));
 // for mobile 
 // app.use(cors({
 //   origin: [ 'http://192.168.43.217:3000'],
 //   credentials: true,
 // }));
+
+
+const allowedOrigins = [
+  'http://localhost:3000',  // React frontend (development)
+  'http://localhost:8000',  // Mobile server or local server you're working from
+  process.env.CLIENT_URL,   // Your production URL (for Render)
+];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true); // Allow the request
+    } else {
+      callback(new Error('Not allowed by CORS')); // Reject the request
+    }
+  },
+  credentials: true, // Allow cookies and credentials to be sent with requests
+}));
 
 // Middleware
 app.use(bodyParser.json());

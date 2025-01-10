@@ -209,6 +209,7 @@ export const exportCustomers = async (req, res) => {
   let updateProgress = 0;
   export const bulkUpdateCustomers = async (req, res) => {
     try {
+      console.log("working")
       if (!req.file) {
         return res.status(400).json({ error: "No file uploaded" });
       }

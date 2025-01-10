@@ -50,7 +50,7 @@ try {
 export const stateWise =async (req,res)=>{
 try {
      const {state}= req.query;
-     console.log(state)
+    
 const branches = await Branch.find({state});
 res.status(200).json(branches)
     

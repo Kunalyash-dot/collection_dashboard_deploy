@@ -3,7 +3,8 @@ import axios from "axios";
 
 // Set up Axios instance with the backend base URL
 const API = axios.create({
-  baseURL: "https://collection-dashboard.onrender.com", // Backend server's URL
+  baseURL: "https://collection-dashboard.onrender.com",
+  withCredentials: true, 
 });
 // for mobile
 // const API = axios.create({
@@ -36,7 +37,7 @@ API.interceptors.response.use(
 
       try {
         // Request a new access token using the refresh token
-        const refreshResponse = await axios.get("http://localhost:4000/api/auth/refresh-token", {
+        const refreshResponse = await axios.get("http://localhost:8000/api/auth/refresh-token", {
           withCredentials: true, // Send cookies (refresh token stored in cookies)
         });
 
